@@ -6,7 +6,7 @@ Param(
     )
 
 #Based on:
-# * https://s3.amazonaws.com/cf-templates-1xecdjh8obo1h-us-east-1/configure-rdsh.ps1
+# * hhttps://s3.amazonaws.com/app-chemistry/scripts/configure-rdsh.ps1
 
 if (-not $ServerFQDN) {
     $name = invoke-restmethod -uri http://169.254.169.254/latest/meta-data/public-hostname
