@@ -120,7 +120,7 @@
 	    	"Type" : "AWS::CloudFormation::Stack",
 			"DependsOn" : "RdshElbStack",
        	 	"Properties" : {
-           		"TemplateURL" : "https://s3.amazonaws.com/app-chemistry/templates/rdsh_private_autoscale_elb.element",
+           		"TemplateURL" : "https://s3.amazonaws.com/app-chemistry/templates/ra_rdsh_private_autoscale_elb.element",
            	 	"Parameters" : {
 					"KeyPairName" : {"Ref" : "KeyPairName"},
 					"RdshInstanceType" : {"Ref" : "InstanceTypeRdsh"},
@@ -147,7 +147,7 @@
 	    	"Type" : "AWS::CloudFormation::Stack",
 			"DependsOn" : "RdshElbStack",
        	 	"Properties" : {
-           		"TemplateURL" : "https://s3.amazonaws.com/app-chemistry/templates/rdsh_private_autoscale_elb.element",
+           		"TemplateURL" : "https://s3.amazonaws.com/app-chemistry/templates/ra_rdsh_private_autoscale_elb.element",
            	 	"Parameters" : {
 					"KeyPairName" : {"Ref" : "KeyPairName"},
 					"RdshInstanceType" : {"Ref" : "InstanceTypeRdsh"},
@@ -174,7 +174,7 @@
 	    	"Type" : "AWS::CloudFormation::Stack",
 			"DependsOn" : "RdshElbStack",
        	 	"Properties" : {
-           		"TemplateURL" : "https://s3.amazonaws.com/app-chemistry/templates/rdsh_private_autoscale_elb.element",
+           		"TemplateURL" : "https://s3.amazonaws.com/app-chemistry/templates/ra_rdsh_private_autoscale_elb.element",
            	 	"Parameters" : {
 					"KeyPairName" : {"Ref" : "KeyPairName"},
 					"RdshInstanceType" : {"Ref" : "InstanceTypeRdsh"},
