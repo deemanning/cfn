@@ -2,8 +2,8 @@
     "AWSTemplateFormatVersion" : "2010-09-09",
     "Description"              : "This template creates a internal Elastic Load Balancer using TCP port 3389",
     "Parameters" : {
-        "PublicSubnetIDs" : {
-            "Description" : "A list of Public subnet IDs to attach to the load balancer.",
+        "PrivateSubnetIDs" : {
+            "Description" : "A list of Private subnet IDs to attach to the load balancer.",
             "Type" : "List<AWS::EC2::Subnet::Id>"
         },
         "SecurityGroupId" : {
@@ -35,7 +35,7 @@
                 ],
                 "Scheme" : "internal",
                 "SecurityGroups" : [ { "Ref" : "SecurityGroupId" } ],
-                "Subnets" : { "Ref" : "PublicSubnetIDs" },
+                "Subnets" : { "Ref" : "PrivateSubnetIDs" },
                 "Tags" : [
                     {
                         "Key" : "Name",
