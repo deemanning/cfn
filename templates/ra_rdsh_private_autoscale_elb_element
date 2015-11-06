@@ -25,6 +25,12 @@
             "Type" : "String",
             "MinLength" : "1"
         },
+        "DomainAccessUserGroup" : {
+            "Description" : "Domain group of users authorized to use the RDSH",
+            "Type" : "String",
+            "Default" : "Domain Users",
+            "MinLength" : "1"
+        },
         "DomainJoinPassword" : {
             "Description" : "Password for the domain join user. Must be at least 8 characters containing letters, numbers and symbols",
             "Type"        : "String",
@@ -40,7 +46,7 @@
             "Default"     : "StackAdmin",
             "MinLength"   : "5",
             "MaxLength"   : "25",
-            "AllowedPattern" : "[a-zA-Z0-9]*"
+            "AllowedPattern" : "[a-zA-Z0-9_]*"
         },
         "DomainDNSName" : {
             "Description" : "Fully qualified domain name (FQDN) of the forest root domain e.g. example.com",
@@ -49,6 +55,11 @@
             "MinLength"   : "3",
             "MaxLength"   : "25",
             "AllowedPattern" : "[a-zA-Z0-9]+\\..+"
+        },
+        "DomainDNSServers" : {
+            "Description" : "Comma-separated list of IP addresses of DNS Servers. Commonly the Domain Controllers. (e.g. 10.0.0.10,10.0.64.10)",
+            "Type"        : "CommaDelimitedList",
+            "Default"     : "10.0.0.10"
         },
         "DomainNetBIOSName" : {
             "Description" : "NetBIOS name of the domain (e.g. EXAMPLE)",
@@ -61,6 +72,10 @@
         "PrivateSubnetID" : {
             "Description" : "Private Subnet ID where the RDSH instance will run.",
             "Type"        : "AWS::EC2::Subnet::Id"
+        },
+        "SecurityGroupIdDomainMember" : {
+            "Description" : "ID of the security group for Active Directory domain members",
+            "Type"        : "AWS::EC2::SecurityGroup::Id"
         },
         "SecurityGroupIdRDSH" : {
             "Description" : "ID of the security group for RDSH instances",
@@ -305,18 +320,18 @@
                                     "Fn::Join" : [
                                         "",
                                         [
-                                            "powershell.exe -ExecutionPolicy RemoteSigned",
+                                            "powershell.exe -ExecutionPolicy Bypass",
                                             " C:\\cfn\\scripts\\configure-rdsh.ps1 ",
                                             " -DomainNetBiosName ", { "Ref" : "DomainNetBIOSName" },
                                             " -GroupName ",
                                             "'",
-                                            { "Ref" : "RemoteAccessUserGroup" },
+                                            { "Ref" : "DomainAccessUserGroup" },
                                             "'",
                                             " -Verbose"
                                         ]
                                     ]
                                 },
-                                "waitAfterCompletion" : "0"
+                                "waitAfterCompletion" : "forever"
                             }
                         }
                     },
