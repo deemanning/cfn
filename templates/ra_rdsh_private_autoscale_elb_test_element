@@ -325,7 +325,7 @@
                                             " -DomainNetBiosName ", { "Ref" : "DomainNetBIOSName" },
                                             " -GroupName ",
                                             "'",
-                                            { "Ref" : "RemoteAccessUserGroup" },
+                                            { "Ref" : "RemoteDesktopUsers" },
                                             "'",
                                             " -Verbose"
                                         ]
