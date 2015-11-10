@@ -28,11 +28,8 @@ dir cert:\localmachine\root | ? { $_.Subject -eq "CN=$ServerFQDN" } | % { Remove
 $name = new-object -com "X509Enrollment.CX500DistinguishedName.1"
 $name.Encode("CN=$ServerFQDN", 0)
 
-$DomainName = Read-Host "ad.dicelab.net:"
-$UserName = Read-Host "Domain Users:"
-$AdminGroup = [ADSI]"WinNT://$ComputerName/Remote Desktop Users,group"
-$User = [ADSI]"WinNT://$DomainName/$UserName,users"
-$AdminGroup.Add($User.cn=users,dc=ad.dicelab,dc=net)
+(
+get-WmiObject -Namespace "root/cimv2/terminalservices" -Class win32_tspermissionssetting|Where-Object {$_.TerminalName -eq "RDP-Tcp"}).AddAccount("dicelab\Domain Users",2)
 
 $key = new-object -com "X509Enrollment.CX509PrivateKey.1"
 $key.ProviderName = "Microsoft RSA SChannel Cryptographic Provider"
