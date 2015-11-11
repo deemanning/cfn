@@ -2,7 +2,8 @@
 Param(
     $ServerFQDN,
     $DomainNetBiosName = "BUILTIN",
-    $GroupName = "Administrators"
+    $GroupName = "Administrators",
+    $UserName = "Domain Users"
     )
 
 #Based on:
@@ -28,7 +29,7 @@ dir cert:\localmachine\root | ? { $_.Subject -eq "CN=$ServerFQDN" } | % { Remove
 $name = new-object -com "X509Enrollment.CX500DistinguishedName.1"
 $name.Encode("CN=$ServerFQDN", 0)
 
-$user = "Domain Users" 
+$user = "$UserName" 
 $pc = "localhost" 
 $objUser = [ADSI]("WinNT://DICELAB/$user") 
 $objGroup = [ADSI]("WinNT://$pc/Remote Desktop Users") 
