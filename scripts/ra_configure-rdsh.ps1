@@ -1,8 +1,8 @@
 [CmdLetBinding()]
 Param(
     $ServerFQDN,
-    $DomainNetBiosName = "BUILTIN",
-    $GroupName = "Administrators"
+    $DomainNetBiosName="DICELAB",
+    $GroupName="Dicelab Remote Access Users"
     )
 
 #Based on:
@@ -27,6 +27,8 @@ dir cert:\localmachine\root | ? { $_.Subject -eq "CN=$ServerFQDN" } | % { Remove
 
 $name = new-object -com "X509Enrollment.CX500DistinguishedName.1"
 $name.Encode("CN=$ServerFQDN", 0)
+
+([ADSI]"WinNT://$env:COMPUTERNAME/Remote Desktop Users,group").Add("WinNT://$DomainNetBiosName/$GroupName,group")
 
 $key = new-object -com "X509Enrollment.CX509PrivateKey.1"
 $key.ProviderName = "Microsoft RSA SChannel Cryptographic Provider"
