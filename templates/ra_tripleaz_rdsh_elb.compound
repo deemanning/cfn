@@ -28,12 +28,6 @@
                 "m4.xlarge"
             ]
         },
-        "RemoteAccessUserGroup" : {
-            "Description" : "Domain group of users authorized to use the RDSH",
-            "Type" : "String",
-            "Default" : "Domain Admins",
-            "MinLength" : "1"
-        },
         "DomainJoinPassword" : {
             "Description" : "Password for the domain join user. Must be at least 8 characters containing letters, numbers and symbols",
             "Type"        : "String",
@@ -125,7 +119,6 @@
 					"KeyPairName" : {"Ref" : "KeyPairName"},
 					"RdshInstanceType" : {"Ref" : "InstanceTypeRdsh"},
 					"RdshElbName" : { "Fn::GetAtt" : [ "RdshElbStack", "Outputs.LoadBalancerName" ] },
-                    "RemoteAccessUserGroup" : { "Ref" : "RemoteAccessUserGroup" },
                     "DomainJoinPassword" : { "Ref" : "DomainJoinPassword" },
                     "DomainJoinUser" : { "Ref" : "DomainJoinUser" },
                     "DomainDNSName" : { "Ref" : "DomainDNSName" },
@@ -152,7 +145,6 @@
 					"KeyPairName" : {"Ref" : "KeyPairName"},
 					"RdshInstanceType" : {"Ref" : "InstanceTypeRdsh"},
 					"RdshElbName" : { "Fn::GetAtt" : [ "RdshElbStack", "Outputs.LoadBalancerName" ] },
-                    "RemoteAccessUserGroup" : { "Ref" : "RemoteAccessUserGroup" },
                     "DomainJoinPassword" : { "Ref" : "DomainJoinPassword" },
                     "DomainJoinUser" : { "Ref" : "DomainJoinUser" },
                     "DomainDNSName" : { "Ref" : "DomainDNSName" },
@@ -179,7 +171,6 @@
 					"KeyPairName" : {"Ref" : "KeyPairName"},
 					"RdshInstanceType" : {"Ref" : "InstanceTypeRdsh"},
 					"RdshElbName" : { "Fn::GetAtt" : [ "RdshElbStack", "Outputs.LoadBalancerName" ] },
-                    "RemoteAccessUserGroup" : { "Ref" : "RemoteAccessUserGroup" },
                     "DomainJoinPassword" : { "Ref" : "DomainJoinPassword" },
                     "DomainJoinUser" : { "Ref" : "DomainJoinUser" },
                     "DomainDNSName" : { "Ref" : "DomainDNSName" },
