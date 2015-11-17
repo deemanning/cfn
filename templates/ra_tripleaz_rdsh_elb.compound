@@ -28,6 +28,12 @@
                 "m4.xlarge"
             ]
         },
+        "DomainAccessUserGroup" : {
+            "Description" : "Domain group of users authorized to use the RDSH",
+            "Type" : "String",
+            "Default" : "Domain Users",
+            "MinLength" : "1"
+        },
         "DomainJoinPassword" : {
             "Description" : "Password for the domain join user. Must be at least 8 characters containing letters, numbers and symbols",
             "Type"        : "String",
@@ -92,7 +98,7 @@
 					"VPC" : { "Ref" : "VPC" },
                     "UseELB" : "true"
            		}
-			}
+		}
       	},	
     	"RdshElbStack" : {
 	    	"Type" : "AWS::CloudFormation::Stack",
@@ -108,7 +114,7 @@
                     },
 					"SecurityGroupId" : { "Fn::GetAtt" : [ "RdshSecurityGroupStack", "Outputs.RdshElbSecurityGroupId" ] }
            		}
-			}
+		}
       	},
     	"Rdsh1Stack" : {
 	    	"Type" : "AWS::CloudFormation::Stack",
@@ -134,7 +140,7 @@
 					"SecurityGroupIdRDSH" : { "Fn::GetAtt" : [ "RdshSecurityGroupStack", "Outputs.RdshSecurityGroupId" ] },
 					"VPC" : { "Ref" : "VPC" }
            		}
-			}
+		}
       	},
     	"Rdsh2Stack" : {
 	    	"Type" : "AWS::CloudFormation::Stack",
@@ -160,7 +166,7 @@
 					"SecurityGroupIdRDSH" : { "Fn::GetAtt" : [ "RdshSecurityGroupStack", "Outputs.RdshSecurityGroupId" ] },
 					"VPC" : { "Ref" : "VPC" }
            		}
-			}
+		}
       	},
     	"Rdsh3Stack" : {
 	    	"Type" : "AWS::CloudFormation::Stack",
